@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halaman Login Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 350px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px;
+            margin: 20px 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <!-- Ganti URL dengan logo Anda jika ada -->
+            <img src="https://via.placeholder.com/100" alt="Logo">
+        </div>
+        <h1>Login Akses Course</h1>
+        <div>
+            <input type="email" id="email" placeholder="Email Anda" />
+            <input type="password" id="password" placeholder="Password Anda" />
+            <button onclick="checkAccess()">Masuk ke Course</button>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        // Data student dan kursus mereka
+        // Dalam aplikasi nyata, ini sebaiknya disimpan di server
+        const students = [
+            { 
+                email: "student1@example.com", 
+                password: "pass123", 
+                name: "Student 1",
+                courseUrl: "https://www.notion.so/Students-Access-Page-8a3451d2b6f74d9a81414e6d33616a36#course1" 
+            },
+            { 
+                email: "student2@example.com", 
+                password: "pass456", 
+                name: "Student 2",
+                courseUrl: "https://www.notion.so/Students-Access-Page-8a3451d2b6f74d9a81414e6d33616a36#course2" 
+            }
+        ];
+
+        function checkAccess() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            // Cari student yang cocok
+            const student = students.find(s => 
+                s.email === email && s.password === password
+            );
+            
+            if (student) {
+                // Jika ditemukan, redirect ke halaman course
+                alert("Selamat datang, " + student.name + "! Anda akan diarahkan ke course Anda.");
+                window.location.href = student.courseUrl;
+            } else {
+                // Jika tidak ditemukan, tampilkan pesan error
+                document.getElementById("message").innerText = 
+                    "Email atau password salah. Silakan coba lagi.";
+            }
+        }
+    </script>
+</body>
+</html>
